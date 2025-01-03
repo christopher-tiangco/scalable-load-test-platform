@@ -23,7 +23,7 @@ variable "vpc_security_group_ids" {
 }
 
 
-resource "aws_instance" "ec2_instance" {
+resource "aws_instance" "load_test_platform" {
   ami                     = var.ami_id
   iam_instance_profile    = var.instance_profile
   instance_type           = var.instance_type
@@ -37,4 +37,14 @@ resource "aws_instance" "ec2_instance" {
 
   # Disable key pair
   key_name = null
+
+  # Install Docker
+  user_data = <<-EOF
+    #!/bin/bash
+    sudo yum update -y
+    sudo yum install -y docker
+    sudo service docker start
+    sudo usermod -a -G docker ec2-user
+    sudo chkconfig docker on
+  EOF
 }
