@@ -11,9 +11,8 @@ module "security_group" {
   security_group_name = "load_test_platform_sg"
 }
 
-/*
 # Create the EC2 instance
-module "ec2_instance" {
+module "ec2" {
   source = "./ec2"
   
   ami_id                  = local.config.ec2.ami_id
@@ -23,4 +22,3 @@ module "ec2_instance" {
   subnet_id               = local.config.vpc.subnet_id
   vpc_security_group_ids  = ["${module.security_group.id}"]
 }
-*/
