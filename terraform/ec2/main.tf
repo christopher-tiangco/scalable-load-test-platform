@@ -38,7 +38,7 @@ resource "aws_instance" "load_test_platform" {
   # Disable key pair
   key_name = null
 
-  # Install Docker
+  # Install Docker and Git then clone the repository for this terraform configuration
   user_data = <<-EOF
     #!/bin/bash
     sudo yum update -y
@@ -46,5 +46,7 @@ resource "aws_instance" "load_test_platform" {
     sudo service docker start
     sudo usermod -a -G docker ec2-user
     sudo chkconfig docker on
+    sudo yum install -y git
+    cd ~ && git clone https://github.com/christopher-tiangco/scalable-load-test-platform.git
   EOF
 }
