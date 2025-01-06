@@ -1,6 +1,8 @@
+.DS_Store
 inputs.tfvars
 .terraform
 terraform.tfstate
 terraform.tfstate.backup
 .terraform.lock.hcl
 globals.yaml
+load_test_platform_main_key.pem

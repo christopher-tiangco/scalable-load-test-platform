@@ -19,6 +19,7 @@ module "ec2" {
   instance_name           = local.config.ec2.name
   instance_profile        = module.iam_roles_and_policies.ssm_role_instance_profile_name
   instance_type           = local.config.ec2.instance_type
+  ec2_key_pair            = local.config.ec2.key_pair
   subnet_id               = local.config.vpc.subnet_id
   vpc_security_group_ids  = ["${module.security_group.id}"]
 }
